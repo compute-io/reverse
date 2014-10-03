@@ -1,6 +1,6 @@
 {
   "name": "compute-reverse",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reverse an array in place.",
   "author": {
     "name": "Athan Reines",
