@@ -23,6 +23,29 @@ describe( 'compute-reverse', function tests() {
 		expect( reverse ).to.be.a( 'function' );
 	});
 
+	it( 'should throw an error if not provided an array', function test() {
+		var values = [
+				5,
+				'5',
+				true,
+				NaN,
+				undefined,
+				null,
+				function(){},
+				{}
+			];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( TypeError );
+		}
+
+		function badValue( value ) {
+			return function() {
+				reverse( value );
+			};
+		}
+	});
+
 	it( 'should reverse an array', function test() {
 		var arr = [1,2,3,4],
 			expected = [4,3,2,1];
