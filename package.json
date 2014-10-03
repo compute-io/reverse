@@ -25,7 +25,9 @@
   "keywords": [
     "compute.io",
     "compute",
-    "computation"
+    "computation",
+    "reverse",
+    "array"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/reverse/issues"

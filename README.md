@@ -1,4 +1,4 @@
-reverse
+Reverse
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
@@ -19,14 +19,36 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 To use the module,
 
 ``` javascript
-var lib = require( 'compute-reverse' );
+var reverse = require( 'compute-reverse' );
 ```
+
+#### reverse( arr )
+
+Reverses an array in place.
+
+``` javascript
+var arr = [ 1, 2, 3, 4 ];
+
+reverse( arr );
+```
+
+Note: the input `array` is mutated.
+
 
 
 ## Examples
 
 ``` javascript
-var lib = require( 'compute-reverse' );
+var reverse = require( 'compute-reverse' );
+
+var arr = new Array( 100 );
+
+for ( var i = 0; i < arr.length; i++ ) {
+	arr[ i ] = i;
+}
+reverse( arr );
+
+console.log( JSON.stringify( arr ) );
 ```
 
 To run the example code from the top-level application directory,
@@ -34,6 +56,13 @@ To run the example code from the top-level application directory,
 ``` bash
 $ node ./examples/index.js
 ```
+
+
+## Notes
+
+According to [ECMA specification 262](http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.8), when implementing the native `array.reverse()` method, one must check whether array elements are defined before determining how to swap elements. If one element is a hole, only the non-hole value is assigned to a temporary value before being assigned to a new position in the array. The element's original position is then deleted. See the V8 (Node.js) [implementation](https://github.com/joyent/node/blob/master/deps/v8/src/array.js) for an example.
+
+If we eliminate the hole checks and additional temporary variables, we can streamline the algorithm for performance gains. See [jsperf](http://jsperf.com/array-reverse-native-vs-loop) for benchmarks.
 
 
 ## Tests
