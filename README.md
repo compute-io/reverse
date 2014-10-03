@@ -24,7 +24,7 @@ var reverse = require( 'compute-reverse' );
 
 #### reverse( arr )
 
-Reverses an array in place.
+Reverses an `array` in place.
 
 ``` javascript
 var arr = [ 1, 2, 3, 4 ];
@@ -60,9 +60,9 @@ $ node ./examples/index.js
 
 ## Notes
 
-According to [ECMA specification 262](http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.8), when implementing the native `array.reverse()` method, one must check whether array elements are defined before determining how to swap elements. If one element is a hole, only the non-hole value is assigned to a temporary value before being assigned to a new position in the array. The element's original position is then deleted. See the V8 (Node.js) [implementation](https://github.com/joyent/node/blob/master/deps/v8/src/array.js) for an example.
+According to [ECMA specification 262](http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.8), when implementing the native `array.reverse()` method, one must check whether `array` elements are defined before determining how to swap elements. If one element is a `hole`, only the non-hole value is assigned to a temporary value before being assigned to a new position in the `array`. The element's original position is then deleted. See the V8 (Node.js) [implementation](https://github.com/joyent/node/blob/master/deps/v8/src/array.js) for an example.
 
-If we eliminate the hole checks and additional temporary variables, we can streamline the algorithm for performance gains. See [jsperf](http://jsperf.com/array-reverse-native-vs-loop) for benchmarks.
+If we eliminate the `hole` checks and additional temporary variables, we can streamline the algorithm for performance gains. See [jsPerf](http://jsperf.com/array-reverse-native-vs-loop) for benchmarks.
 
 
 ## Tests
