@@ -2,7 +2,7 @@ Reverse
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Reverse an array in place.
+> Reverse an array.
 
 
 ## Installation
@@ -16,23 +16,34 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## Usage
 
-To use the module,
-
 ``` javascript
 var reverse = require( 'compute-reverse' );
 ```
 
-#### reverse( arr )
+#### reverse( arr[, options] )
 
-Reverses an `array` in place.
+Reverses an `array`.
 
 ``` javascript
 var arr = [ 1, 2, 3, 4 ];
 
-reverse( arr );
+var out = reverse( arr );
+// returns [ 4, 3, 2, 1 ]
 ```
 
-Note: the input `array` is mutated.
+By default, the input `array` is __mutated__. To return a new `array`, set the `copy` option to `true`.
+
+``` javascript
+var arr = [ 1, 2, 3, 4 ];
+
+var out = reverse( arr, {
+	'copy': true
+});
+// returns [ 4, 3, 2, 1 ];
+
+console.log( arr === out );
+// returns false
+```
 
 
 
@@ -42,7 +53,6 @@ Note: the input `array` is mutated.
 var reverse = require( 'compute-reverse' );
 
 var arr = new Array( 100 );
-
 for ( var i = 0; i < arr.length; i++ ) {
 	arr[ i ] = i;
 }
@@ -69,7 +79,7 @@ If we eliminate the `hole` checks and additional temporary variables, we can str
 
 ### Unit
 
-Unit tests use the [Mocha](http://visionmedia.github.io/mocha) test framework with [Chai](http://chaijs.com) assertions. To run the tests, execute the following command in the top-level application directory:
+Unit tests use the [Mocha](http://mochajs.org) test framework with [Chai](http://chaijs.com) assertions. To run the tests, execute the following command in the top-level application directory:
 
 ``` bash
 $ make test
@@ -89,19 +99,19 @@ $ make test-cov
 Istanbul creates a `./reports/coverage` directory. To access an HTML version of the report,
 
 ``` bash
-$ open reports/coverage/lcov-report/index.html
+$ make view-cov
 ```
 
 
+---
 ## License
 
 [MIT license](http://opensource.org/licenses/MIT). 
 
 
----
 ## Copyright
 
-Copyright &copy; 2014. Athan Reines.
+Copyright &copy; 2014-2015. Athan Reines.
 
 
 [npm-image]: http://img.shields.io/npm/v/compute-reverse.svg
